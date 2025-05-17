@@ -1,0 +1,55 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  name: DevOps
+
+parameters:
+  - name: myString
+    type: string
+    default: a string
+  - name: myMultiString
+    type: string
+    default: default
+    values:
+      - default
+      - ubuntu
+  - name: myNumber
+    type: number
+    default: 2
+    values:
+      - 1
+      - 2
+      - 4
+      - 8
+      - 16
+  - name: myBoolean
+    type: boolean
+    default: true
+  - name: myObject
+    type: object
+    default:
+      foo: FOO
+      bar: BAR
+      things:
+        - one
+        - two
+        - three
+      nested:
+        one: apple
+        two: pear
+        count: 3
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
