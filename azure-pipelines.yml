@@ -15,7 +15,15 @@ variables:
 
 
 stages:
+- stage: Test
+  jobs:
+  - job: Test_job
+    displayName:  Test the job
+    steps: 
+    - script: echo "hello test job"
+
 - stage: BuildApp
+  dependsOn: Test
   displayName: Build Apps
   jobs:
   - job: BuildFrontendApp
@@ -49,6 +57,7 @@ stages:
       displayName: unit tests backend
 
 - stage: DeployDev
+  dependsOn: BuildApp
   displayName: Deploy to DEV environment
   jobs:
   - job: DeployFrontendDev
