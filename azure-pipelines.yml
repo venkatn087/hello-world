@@ -21,10 +21,11 @@ stages:
   - job: BuildFrontendApp
     displayName: Build Frontend App
     steps:
-    - script: echo building frontend app
-      displayName: build frontend app
-    - script: echo running unit tests for frontend app
-      displayName: unit tests frontend
+    - task: CmdLine@2
+      inputs:
+          script: |
+            echo Write your commands here
+            echo Hello world
 
   - job: BuildBackendApp
     displayName: Build Backend App
