@@ -14,14 +14,64 @@ variables:
 - group : TokenDetails
 
 
-steps:
-- task: CmdLine@2
-  inputs:
-    script: |
-      echo Write your commands here
-      echo Hello world
-      echo $(Token)
-      echo $(first)
-      echo $(Az_Token)
-      echo $(username)
+stages:
+- stage: BuildApp
+  displayName: Build Apps
+  jobs:
+  - job: BuildFrontendApp
+    displayName: Build Frontend App
+    steps:
+    - script: echo building frontend app
+      displayName: build frontend app
+    - script: echo running unit tests for frontend app
+      displayName: unit tests frontend
+
+  - job: BuildBackendApp
+    displayName: Build Backend App
+    steps:
+    - script: echo building backend app
+      displayName: build backend app
+    - script: echo running unit tests for backend app
+      displayName: unit tests backend
+
+- stage: DeployDev
+  displayName: Deploy to DEV environment
+  jobs:
+  - job: DeployFrontendDev
+    displayName: Deploy frontend to DEV
+    steps:
+    - script: echo deploying frontend app to DEV
+      displayName: deploy frontend app to DEV
+
+  - job: DeployBackendDev
+    displayName: Deploy backend to DEV
+    steps:
+    - script: echo deploying backend app to DEV
+      displayName: deploy backend app to DEV
+
+- stage: DeployProd
+  displayName: Deploy to PROD environment
+  pool:
+    name: 'DevOps'
+  jobs:
+  - job: DeployFrontendProd
+    displayName: Deploy frontend to PROD
+    steps:
+    - script: echo deploying frontend app to PROD
+      displayName: deploy frontend app to PROD
+
+  - job: DeployBackendProd
+    displayName: Deploy backend to PROD
+    pool:
+      name: DevOps
+    steps:
+    - script: |
+        echo deploying backend app to PROD
+        echo Write your commands here
+        echo Hello world
+        echo $(Token)
+        echo $(first)
+        echo $(Az_Token)
+        echo $(username)
+      displayName: deploy backend app to PROD
 
