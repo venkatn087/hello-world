@@ -8,6 +8,11 @@ trigger:
 
 pool:
   name: 'DevOps'
+variables:
+- name: first
+  value: initialvalue
+- group : TokenDetails
+
 
 steps:
 - task: CmdLine@2
@@ -16,3 +21,7 @@ steps:
       echo Write your commands here
       echo Hello world
       echo $(Token)
+      echo $(first)
+      echo $(Az_Token)
+      echo $(username)
+
