@@ -27,6 +27,12 @@ stages:
             echo Write your commands here
             echo Hello world
             echo $(Build.SourcesDirectory)
+            echo "$(Build.SourcesDirectory)"
+            echo "$(Build.BuildId)"
+            echo "$(Build.SourceBranch)"
+            echo "$(Build.Reason)"
+            echo "$(Build.DefinitionName)"
+            echo "$(Build.SourceVersion)"
     - task: PowerShell@2
       inputs:
         targetType: 'inline'
