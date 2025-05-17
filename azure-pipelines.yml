@@ -8,10 +8,6 @@ trigger:
 
 pool:
   name: 'DevOps'
-variables:
-- name: first
-  value: initialvalue
-- group : TokenDetails
 
 
 stages:
@@ -92,9 +88,5 @@ stages:
         echo deploying backend app to PROD
         echo Write your commands here
         echo Hello world
-        echo $(Token)
-        echo $(first)
-        echo $(Az_Token)
-        echo $(username)
       displayName: deploy backend app to PROD
 
